@@ -630,6 +630,10 @@ MonoBehaviour:
   healthPoints: 0
   moveSpeed: 0
   isDead: 0
+  allPlayers:
+  - {fileID: 2021507087}
+  - {fileID: 1317807641}
+  - {fileID: 1550532797}
 --- !u!65 &1263679582
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseUnit : MonoBehaviour
 {
     public int healthPoints;
-    public int moveSpeed;
+    public float moveSpeed;
     public bool isDead = false;
 
 
@@ -17,4 +17,6 @@ public class BaseUnit : MonoBehaviour
             Destroy(this);
         }
     }
+
+    //this is where player classes, enemies, and generators will take damage
 }

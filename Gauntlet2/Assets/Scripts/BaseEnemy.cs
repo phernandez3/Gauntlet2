@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class BaseEnemy : BaseUnit
 {
-    //integrate findobjectsoftype into fixed array[]
-    public GameObject[] allPlayers;
+    public GameObject[] allPlayers;     //References the four players to determine which is closer
 
-    public void Update()
+
+    public void Awake()
     {
-        FindClosestPlayer();
+        moveSpeed = 5f;
     }
 
 
-    public void FindClosestPlayer()
+    public void Update()
+    {
+        MoveToClosestPlayer();
+    }
+
+
+    public void MoveToClosestPlayer()
     {
         float distanceToClosestPlayer = Mathf.Infinity;
         
-        //BasePlayer closestPlayer = null;
-        //BasePlayer[] allPlayers = GameObject.FindObjectsOfType<BasePlayer>();
+        GameObject closestPlayer = null;
 
         foreach(GameObject currentPlayer in allPlayers)
         {
-            float distanceToPlayer = (currentPlayer.transform.position - this.transform.position).sqrMagnitude;
+            float distanceToPlayer = (currentPlayer.transform.position - transform.position).sqrMagnitude;
             if(distanceToPlayer < distanceToClosestPlayer)
             {
                 distanceToClosestPlayer = distanceToPlayer;
                 closestPlayer = currentPlayer;
             }
         }
+        transform.position = Vector3.MoveTowards(transform.position, closestPlayer.transform.position, moveSpeed * Time.deltaTime);
         Debug.DrawLine(this.transform.position, closestPlayer.transform.position);
     }
 }
