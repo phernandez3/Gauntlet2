@@ -33,7 +33,9 @@ public class EnemyGenerator : BaseUnit
         //Enemies NOW dead are removed from enemiesAlive list, then destroyed
         foreach(GameObject gObjEnemy in enemiesDead)
         {
+            Debug.Log("enemy currently in dead list");
             enemiesAlive.Remove(gObjEnemy);
+            Debug.Log("dead enemy removed from alive list");
             Destroy(gObjEnemy);
         }
         enemiesDead.Clear();
