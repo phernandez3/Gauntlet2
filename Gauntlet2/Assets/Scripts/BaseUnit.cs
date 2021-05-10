@@ -14,7 +14,7 @@ public class BaseUnit : MonoBehaviour
         healthPoints -= damageAmount;
         if (healthPoints <= 0)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 

@@ -74,11 +74,12 @@ public class BasePlayer : BaseUnit
             Vector2 Move = transform.localPosition;
             Move.x += Input.GetAxis(MoveX) * moveSpeed * Time.deltaTime;
             Move.y += Input.GetAxis(MoveY) * moveSpeed * Time.deltaTime * -1;
-            transform.localPosition = Move;
+            transform.localPosition = Move; // Currently un-normalized?
         }
         if (Input.GetAxis(FireX) != 0 || Input.GetAxis(FireY) != 0)
         {
-
+            Vector3 look = new Vector3(Input.GetAxis(FireX) * -1, Input.GetAxis(FireY), 0f);
+            transform.rotation = Quaternion.LookRotation(look * -1, Vector3.forward);
         }
         if (Input.GetAxis(Bomb) != 0)
         {
