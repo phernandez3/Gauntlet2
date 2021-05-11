@@ -5,18 +5,15 @@ using UnityEngine;
 public class BaseUnit : MonoBehaviour
 {
     public int healthPoints;
-    public float moveSpeed;
-    public bool isDead = false;
+    public int moveSpeed;
 
 
     public void TakeDamage(int damageAmount)
     {
-        healthPoints -= damageAmount;
-        if (healthPoints <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        //healthPoints -= damageAmount;
+        //if(healthPoints <= 0)
+        //{
+        //    Destroy(this);
+        //}
     }
-
-    //this is where player classes, enemies, and generators will take damage
 }
