@@ -5,7 +5,8 @@ using UnityEngine;
 public class BaseEnemy : BaseUnit
 {
     public GameObject[] allPlayers;     //References the four players for determining which is closer
-
+    public float attackRange;
+    public bool inRange;
 
     public void Awake()
     {
@@ -43,5 +44,11 @@ public class BaseEnemy : BaseUnit
         //Basic moving toward whichever player is nearest to this enemy
         transform.position = Vector3.MoveTowards(transform.position, closestPlayer.transform.position, moveSpeed * Time.deltaTime);
         Debug.DrawLine(transform.position, closestPlayer.transform.position);
+
+        //
+        if(distanceToClosestPlayer < attackRange)
+        {
+            inRange = true;
+        }
     }
 }
