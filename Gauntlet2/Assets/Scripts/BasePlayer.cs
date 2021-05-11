@@ -32,9 +32,10 @@ public class BasePlayer : BaseUnit
     public float rangeSpeed;
     public GameObject bulletPrefab;
     public int armor;
-
     public int magic;
 
+    //[SerializeField] private List<GameObject> currentBullets;
+    private GameObject currentBullet;
 
     // Move
     // MeleeAttack
@@ -78,13 +79,29 @@ public class BasePlayer : BaseUnit
         }
         if (Input.GetAxis(FireX) != 0 || Input.GetAxis(FireY) != 0)
         {
+            // Turn to stick direction.
             Vector3 look = new Vector3(Input.GetAxis(FireX) * -1, Input.GetAxis(FireY), 0f);
             transform.rotation = Quaternion.LookRotation(look * -1, Vector3.forward);
+
+            // Fire
+            
         }
         if (Input.GetAxis(Bomb) != 0)
         {
 
         }
+    }
+
+    private void Fire()
+    {
+        if (currentBullet == null)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * (rangeSpeed), ForceMode.Impulse);
+            currentBullet = bullet;
+            currentBullet.GetComponent<Bullet>().damage = rangePower;
+        }
+        
     }
 
     private void Hunger()
