@@ -30,12 +30,15 @@ public class BasePlayer : BaseUnit
     public int meleePower;
     public int rangePower;
     public float rangeSpeed;
+    public float rangeLifetime;
     public GameObject bulletPrefab;
     public int armor;
     public int magic;
 
-    //[SerializeField] private List<GameObject> currentBullets;
+    // Tracking stuff
     private GameObject currentBullet;
+    private float bombCooldown;
+    private float lastBombTime;
 
     // Move
     // MeleeAttack
@@ -58,6 +61,9 @@ public class BasePlayer : BaseUnit
         Hunger();
     }
 
+    /// <summary>
+    /// Updates what inputs this player listens for.
+    /// </summary>
     public void InitInputs()
     {
         MoveX = "MoveX" + controllerSlot;
@@ -84,22 +90,38 @@ public class BasePlayer : BaseUnit
             transform.rotation = Quaternion.LookRotation(look * -1, Vector3.forward);
 
             // Fire
+            Fire();
             
         }
         if (Input.GetAxis(Bomb) != 0)
         {
+            if (bombs > 0)
+            {
+                --bombs;
+                print("Player" + controllerSlot + ": Bomb! " + bombs + " remaining.");
+            }
+            else
+            {
+                print("Player" + controllerSlot + ": No bombs!");
+            }
 
         }
     }
 
     private void Fire()
     {
-        if (currentBullet == null)
+        if (currentBullet == null) // Using the original game's "one bullet out at once" rule.
         {
+            // Since the player model itself rotates, 
+            // I'm just choosing to spawn an object and give it forward velocity based on the player's rotation.
             GameObject bullet = Instantiate(bulletPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * (rangeSpeed), ForceMode.Impulse);
+
+            // Give the bullet info.
             currentBullet = bullet;
+            currentBullet.GetComponent<Bullet>().targetTag = "Enemy";
             currentBullet.GetComponent<Bullet>().damage = rangePower;
+            currentBullet.GetComponent<Bullet>().LifetimeDestroy(rangeLifetime);
         }
         
     }
@@ -120,5 +142,12 @@ public class BasePlayer : BaseUnit
         TakeDamage(hungerDamage);
     }
 
-
+    public void TakeArmoredDamage(int armoredDamage)
+    {
+        // Players take damage equal to the attack's power, minus half their armor rounded down.
+        // Ex: if 4 armor, 10 damage >>> 8 damage. (Same with 5 armor.)
+        int damage = armoredDamage - (armor / 2);
+        // print(damage);
+        TakeDamage(damage); // Take this final amount of damage and do regular damage stuff with it.
+    }
 }
