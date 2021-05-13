@@ -9,10 +9,19 @@ using UnityEngine;
 
 public class Ghost : BaseEnemy
 {
-    private void OnTriggerEnter(Collider other)
+    //Set ghost stats here
+    private void Start()
     {
-        if(other.CompareTag("Player"))
+        attackDamage = 1;
+        attackRange = 1;
+    }
+
+
+    private void LateUpdate()
+    {
+        if(inRange)
         {
+            closestPlayer.GetComponent<BaseUnit>().TakeDamage(attackDamage);
             base.isDead = true;
         }
     }
