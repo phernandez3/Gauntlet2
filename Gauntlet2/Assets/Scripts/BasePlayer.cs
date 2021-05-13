@@ -28,6 +28,7 @@ public class BasePlayer : BaseUnit
     public float hungerRate;
     public int hungerDamage;
     private bool hungerTimerWaiting;
+    public int foodHeal;
 
     // Per player class stats
     public int meleePower;
@@ -145,6 +146,10 @@ public class BasePlayer : BaseUnit
         TakeDamage(hungerDamage);
     }
 
+    /// <summary>
+    /// Use this instead of TakeDamage when you want a player to get hurt from anything that will factor in armor (enemies).
+    /// </summary>
+    /// <param name="armoredDamage"></param> Input damage to take here, which will factor in player's armor.
     public void TakeArmoredDamage(int armoredDamage)
     {
         // Players take damage equal to the attack's power, minus half their armor rounded down.
@@ -152,5 +157,35 @@ public class BasePlayer : BaseUnit
         int damage = armoredDamage - (armor / 2);
         // print(damage);
         TakeDamage(damage); // Take this final amount of damage and do regular damage stuff with it.
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Food"))
+        {
+            Destroy(other.gameObject);
+            healthPoints += foodHeal;
+        }
+        else
+
+        if (other.CompareTag("Potion"))
+        {
+            Destroy(other.gameObject);
+            bombs++;
+        }
+        else
+
+        if (other.CompareTag("Key"))
+        {
+            Destroy(other.gameObject);
+            keys++;
+        }
+        else
+
+        if (other.CompareTag("Door") && keys > 0)
+        {
+            Destroy(other.gameObject);
+            keys--;
+        }
     }
 }
