@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+ * Eric Swartz
+ * Sets generator health, periodically spawn an enemy type, raycasts to check if
+ * there is space to spawn next enemy, sets a spawn limiter and tracks how many enemies
+ * are alive to its generator, and tracks for when those enemies have died.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,9 +40,7 @@ public class EnemyGenerator : BaseUnit
         //Enemies NOW dead are removed from enemiesAlive list, then destroyed
         foreach(GameObject gObjEnemy in enemiesDead)
         {
-            Debug.Log("enemy currently in dead list");
             enemiesAlive.Remove(gObjEnemy);
-            Debug.Log("dead enemy removed from alive list");
             Destroy(gObjEnemy);
         }
         enemiesDead.Clear();

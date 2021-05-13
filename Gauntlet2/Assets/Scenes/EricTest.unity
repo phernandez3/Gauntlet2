@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 128506342}
   - component: {fileID: 128506341}
   - component: {fileID: 128506340}
-  - component: {fileID: 128506339}
   - component: {fileID: 128506338}
   m_Layer: 0
   m_Name: grunt
@@ -256,7 +255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128506336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.02, y: 5000, z: 6.08}
+  m_LocalPosition: {x: 4.02, y: 0, z: 6.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1066276024}
@@ -277,27 +276,11 @@ MonoBehaviour:
   healthPoints: 0
   moveSpeed: 0
   isDead: 0
-  allPlayers: []
-  attackRange: 0
-  inRange: 0
---- !u!114 &128506339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128506336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa04608eeee51147b55f4de2dcac15d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthPoints: 0
-  moveSpeed: 0
-  isDead: 0
   allPlayers:
   - {fileID: 476744933}
   - {fileID: 1019600407}
+  closestPlayer: {fileID: 0}
+  attackDamage: 0
   attackRange: 0
   inRange: 0
 --- !u!65 &128506340
@@ -493,7 +476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &389478020
 Transform:
   m_ObjectHideFlags: 0
@@ -714,6 +697,7 @@ GameObject:
   - component: {fileID: 476744936}
   - component: {fileID: 476744935}
   - component: {fileID: 476744938}
+  - component: {fileID: 476744939}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -809,6 +793,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &476744939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476744933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5cc2cd28205444c8edb37b759acdec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 0
+  moveSpeed: 0
+  isDead: 0
 --- !u!1 &976287124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1142,8 @@ MonoBehaviour:
   - {fileID: 2021507087}
   - {fileID: 1317807641}
   - {fileID: 1550532797}
+  closestPlayer: {fileID: 0}
+  attackDamage: 0
   attackRange: 0
   inRange: 0
 --- !u!65 &1263679582
@@ -1261,6 +1262,7 @@ MonoBehaviour:
   meleePower: 0
   rangePower: 0
   rangeSpeed: 0
+  rangeLifetime: 0
   bulletPrefab: {fileID: 0}
   armor: 0
   magic: 0
@@ -1371,7 +1373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1417684529
 Transform:
   m_ObjectHideFlags: 0
@@ -1380,7 +1382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417684528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.02, y: 5000, z: 6.08}
+  m_LocalPosition: {x: -7.21, y: 5000, z: 6.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1066276024}
@@ -1404,6 +1406,8 @@ MonoBehaviour:
   allPlayers:
   - {fileID: 476744933}
   - {fileID: 1019600407}
+  closestPlayer: {fileID: 0}
+  attackDamage: 0
   attackRange: 0
   inRange: 0
 --- !u!65 &1417684531
@@ -1522,6 +1526,7 @@ MonoBehaviour:
   meleePower: 0
   rangePower: 0
   rangeSpeed: 0
+  rangeLifetime: 0
   bulletPrefab: {fileID: 0}
   armor: 0
   magic: 0
@@ -1641,6 +1646,7 @@ MonoBehaviour:
   meleePower: 0
   rangePower: 0
   rangeSpeed: 0
+  rangeLifetime: 0
   bulletPrefab: {fileID: 0}
   armor: 0
   magic: 0

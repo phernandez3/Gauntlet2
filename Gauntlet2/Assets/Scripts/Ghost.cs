@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Eric Swartz
+ * Sets ghost enemy to kamikaze once hitting a player.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
