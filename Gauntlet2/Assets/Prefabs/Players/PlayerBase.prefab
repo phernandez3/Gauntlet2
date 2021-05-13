@@ -187,11 +187,13 @@ MonoBehaviour:
   moveSpeed: 10
   isDead: 0
   controllerSlot: 0
+  meleeHitbox: {fileID: 0}
   score: 0
   keys: 0
   bombs: 0
   hungerRate: 0.5
   hungerDamage: 1
+  foodHeal: 100
   meleePower: 0
   rangePower: 10
   rangeSpeed: 10
