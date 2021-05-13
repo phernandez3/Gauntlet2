@@ -9,7 +9,9 @@ using UnityEngine;
 
 public class BaseEnemy : BaseUnit
 {
-    public GameObject[] allPlayers;      //References the four players for determining which is closer
+    public List<GameObject> activePlayers = new List<GameObject>();       //References any players that are currently in game
+    public List<GameObject> inactivePlayers = new List<GameObject>();     //Tracks how many inactive players there are
+
     public GameObject closestPlayer;     //Tracks which player THIS enemy is currently following
 
     public int attackDamage;                 //ONLY sets up attack damage variable
@@ -20,17 +22,45 @@ public class BaseEnemy : BaseUnit
 
     public void Update()
     {
-        //THIS enemy will stop moving once player is in range
-        if(inRange)
+        //Killed players will be removed from activePlayers list
+        //Also checks if an inactive player has joined back in
+        foreach(GameObject player in inactivePlayers)
         {
-            moveSpeed = 0;
-        }
-        else
-        {
-            moveSpeed = 5;
+            activePlayers.Remove(player);
+
+            if(player.activeSelf)
+            {
+                activePlayers.Add(player);
+            }
         }
 
-        MoveToClosestPlayer();
+        //Players joining in will be removed from inactivePlayers list
+        //Also checks if player has been killed to then be considered inactive
+        foreach(GameObject player in activePlayers)
+        {
+            inactivePlayers.Remove(player);
+
+            if(!player.activeSelf)
+            {
+                inactivePlayers.Add(player);
+            }
+        }
+
+        //THIS enemy will only start searching for players IF there are any active
+        if(activePlayers.Count > 0)
+        {
+            //THIS enemy will stop moving once player is in range
+            if (inRange)
+            {
+                moveSpeed = 0;
+            }
+            else
+            {
+                moveSpeed = 5;
+            }
+
+            MoveToClosestPlayer();
+        }
     }
 
 
@@ -46,7 +76,7 @@ public class BaseEnemy : BaseUnit
 
         //Goes through array to check which player THIS enemy is closer to
         //Then follows THAT player
-        foreach(GameObject playerToFollow in allPlayers)
+        foreach(GameObject playerToFollow in activePlayers)
         {
             //Goes through and finds distance between THIS enemy and each player
             float distanceToAPlayer = (playerToFollow.transform.position - transform.position).sqrMagnitude;
