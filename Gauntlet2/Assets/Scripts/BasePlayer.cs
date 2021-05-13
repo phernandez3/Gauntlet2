@@ -16,9 +16,6 @@ public class BasePlayer : BaseUnit
     private string FireY;
     private string Bomb;
 
-    // Objects
-    public GameObject meleeHitbox;
-
     // Basic player stats
     public int score;
     public int keys;

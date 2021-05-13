@@ -27,46 +27,6 @@ public class Bullet : MonoBehaviour
                     {
                         print("Enemy-tagged object did not have BaseEnemy script or any of its children.");
                     }
-                    Destroy(this.gameObject);
-                    break;
-                case "Player":
-                    if (other.gameObject.GetComponent<BasePlayer>() != null)
-                    {
-                        other.gameObject.GetComponent<BasePlayer>().TakeArmoredDamage(damage);
-                    }
-                    else
-                    {
-                        print("Player-tagged object did not have BasePlayer script or any of its children.");
-                    }
-                    Destroy(this.gameObject);
-                    break;
-                case "Wall":
-                    Destroy(this.gameObject);
-                    break;
-                case "Food":
-                    // Check if it's breakable, if so then kill it.
-                    Destroy(this.gameObject);
-                    break;
-            }
-        }
-    }
-
-    // Copy all stuff here.
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag(targetTag))
-        {
-            switch (targetTag)
-            {
-                case "Enemy":
-                    if (other.gameObject.GetComponent<BaseEnemy>() != null)
-                    {
-                        other.gameObject.GetComponent<BaseEnemy>().TakeDamage(damage);
-                    }
-                    else
-                    {
-                        print("Enemy-tagged object did not have BaseEnemy script or any of its children.");
-                    }
                     break;
                 case "Player":
                     if (other.gameObject.GetComponent<BasePlayer>() != null)
