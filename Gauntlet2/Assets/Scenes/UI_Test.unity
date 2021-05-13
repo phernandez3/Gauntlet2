@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myGameState: 0
-  myUI: {fileID: 0}
+  myUI: {fileID: 89049868}
   p1_isPlaying: 0
   p2_isPlaying: 0
   p3_isPlaying: 0

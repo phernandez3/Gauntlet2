@@ -52,12 +52,28 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        myGameState = GameState.menu;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (myGameState)
+        {
+            case GameState.menu:
+                myUI.TurnOffUI();
+
+                break;
+            case GameState.createLevel:
+                break;
+            case GameState.gameplay:
+                break;
+            case GameState.pause:
+                break;
+            case GameState.gameOver:
+                break;
+            default:
+                break;
+        }
     }
 }

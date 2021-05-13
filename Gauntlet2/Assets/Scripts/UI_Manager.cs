@@ -22,10 +22,10 @@ public class UI_Manager : MonoBehaviour
     private Image p3_HP_UI;
     private Image p4_HP_UI;
 
-    private Image p1_item_UI;
-    private Image p2_item_UI;
-    private Image p3_item_UI;
-    private Image p4_item_UI;
+    private Image p1_items_UI;
+    private Image p2_items_UI;
+    private Image p3_items_UI;
+    private Image p4_items_UI;
 
     public void Awake()
     {
@@ -41,8 +41,28 @@ public class UI_Manager : MonoBehaviour
     }
     public void TurnOffUI()
     {
-        announcement_UI.enabled = false;
+
+        p1_isPlaying_UI.enabled = false;
+        p2_isPlaying_UI.enabled = false;
+        p3_isPlaying_UI.enabled = false;
+        p4_isPlaying_UI.enabled = false;
+
+        p1_score_UI.enabled = false;
+        p2_score_UI.enabled = false;
+        p3_score_UI.enabled = false;
+        p4_score_UI.enabled = false;
+
+        p1_HP_UI.enabled = false;
+        p2_HP_UI.enabled = false;
+        p3_HP_UI.enabled = false;
+        p4_HP_UI.enabled = false;
     }
+
+    public void TurnOnUI()
+    {
+        announcement_UI.enabled = true;
+    }
+
     void Update_Announcement()
     {
 
@@ -50,7 +70,41 @@ public class UI_Manager : MonoBehaviour
 
     void Update_Roster()
     {
+        if (GameManager.Instance.p1_isPlaying)
+        {
+            p1_isPlaying_UI.enabled = false;
+        }
+        else
+        {
+            p1_isPlaying_UI.enabled = true;
+        }
 
+        if (GameManager.Instance.p2_isPlaying)
+        {
+            p2_isPlaying_UI.enabled = false;
+        }
+        else
+        {
+            p2_isPlaying_UI.enabled = true;
+        }
+
+        if (GameManager.Instance.p3_isPlaying)
+        {
+            p3_isPlaying_UI.enabled = false;
+        }
+        else
+        {
+            p3_isPlaying_UI.enabled = true;
+        }
+
+        if (GameManager.Instance.p4_isPlaying)
+        {
+            p4_isPlaying_UI.enabled = false;
+        }
+        else
+        {
+            p4_isPlaying_UI.enabled = true;
+        }
     }
     void Update_Score()
     {
