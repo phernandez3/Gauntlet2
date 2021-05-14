@@ -126,6 +126,7 @@ public class BasePlayer : BaseUnit
             currentBullet.GetComponent<Bullet>().targetTag = "Enemy";
             currentBullet.GetComponent<Bullet>().damage = rangePower;
             currentBullet.GetComponent<Bullet>().LifetimeDestroy(rangeLifetime);
+            currentBullet.GetComponent<Bullet>().myShooter = this.gameObject;
         }
         
     }
