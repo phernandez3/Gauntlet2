@@ -14,6 +14,7 @@ public class Ghost : BaseEnemy
     {
         attackDamage = 1;
         attackRange = 1;
+        healthPoints = 10;
     }
 
 
