@@ -55,7 +55,7 @@ public class BasePlayer : BaseUnit
     // Bomb
     // Lose HP over time
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         InitInputs();
         lastBombTime = Time.time;
@@ -218,4 +218,48 @@ public class BasePlayer : BaseUnit
             // Insert code to exit here.
         }
     }
+
+    public void ChangeClass(string classToChangeTo)
+    {
+        switch (classToChangeTo)
+        {
+            case "Warrior":
+                myClass = "Warrior";
+                moveSpeed = 6;
+                meleePower = 5;
+                rangePower = 3;
+                rangeSpeed = 8;
+                armor = 4;
+                magic = 2;
+                break;
+            case "Valkyrie":
+                myClass = "Valkyrie";
+                moveSpeed = 10;
+                meleePower = 4;
+                rangePower = 1;
+                rangeSpeed = 11;
+                armor = 4;
+                magic = 3;
+                break;
+            case "Ranger":
+                myClass = "Ranger";
+                moveSpeed = 12;
+                meleePower = 3;
+                rangePower = 1;
+                rangeSpeed = 10;
+                armor = 2;
+                magic = 6;
+                break;
+            case "Wizard":
+                myClass = "Wizard";
+                moveSpeed = 6;
+                meleePower = 2;
+                rangePower = 2;
+                rangeSpeed = 14;
+                armor = 0;
+                magic = 8;
+                break;
+        }
+    }
+
 }
