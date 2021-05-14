@@ -118,11 +118,10 @@ public class BasePlayer : BaseUnit
         {
             // Since the player model itself rotates, 
             // I'm just choosing to spawn an object and give it forward velocity based on the player's rotation.
-            GameObject bullet = Instantiate(bulletPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
-            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * (rangeSpeed), ForceMode.Impulse);
+            currentBullet = Instantiate(bulletPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * (rangeSpeed), ForceMode.Impulse);
 
             // Give the bullet info.
-            currentBullet = bullet;
             currentBullet.GetComponent<Bullet>().targetTag = "Enemy";
             currentBullet.GetComponent<Bullet>().damage = rangePower;
             currentBullet.GetComponent<Bullet>().LifetimeDestroy(rangeLifetime);
