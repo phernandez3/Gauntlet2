@@ -16,16 +16,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TriggerStuff(other);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        TriggerStuff(other);
-    }
-
-    private void TriggerStuff(Collider other)
-    {
         if (other.gameObject != myShooter)
         {
             // If friendly fire, then ignore targetTag and work on either unit type.
@@ -41,6 +31,7 @@ public class Bullet : MonoBehaviour
                     {
                         other.gameObject.GetComponent<BaseUnit>().TakeDamage(damage);
                     }
+                    Destroy(this.gameObject);
                 }
             }
             else
