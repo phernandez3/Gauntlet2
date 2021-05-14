@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class Sorcerer : BaseEnemy
 {
-    [SerializeField] private BoxCollider thisCollider;     //Make sure the untriggered collider goes here
+    [SerializeField] private BoxCollider thisCollider;     //Make sure the larger collider goes here
 
 
     //Set sorcerer stats here

@@ -9,6 +9,13 @@ using UnityEngine;
 
 public class BaseEnemy : BaseUnit
 {
+    //For enemy to search for players using these naming conventions
+    private string
+        addPlayer1 = "Player1",
+        addPlayer2 = "Player2",
+        addPlayer3 = "Player3",
+        addPlayer4 = "Player4";
+
     public List<GameObject> activePlayers = new List<GameObject>();       //References any players that are currently in game
     public List<GameObject> inactivePlayers = new List<GameObject>();     //Tracks how many inactive players there are
 
@@ -19,6 +26,21 @@ public class BaseEnemy : BaseUnit
     public float timeBetweenAttacks = 0;     //Set up for enemy types that attack every so often
     public bool inRange = false;             //Checks for if player target is in range of THIS enemy's attack
     public bool isCrowded = false;           //Fixes enemies from pushing each other while following a player
+
+
+    public void Awake()
+    {
+        foreach(GameObject foundPlayer in FindObjectsOfType(typeof(GameObject)))
+        {
+            if(foundPlayer.name == addPlayer1
+                || foundPlayer.name == addPlayer2
+                || foundPlayer.name == addPlayer3
+                || foundPlayer.name == addPlayer4)
+            {
+                inactivePlayers.Add(foundPlayer);
+            }
+        }
+    }
 
 
     public void FixedUpdate()

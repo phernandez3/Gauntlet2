@@ -54,14 +54,14 @@ public class Demon : BaseEnemy
         {
             timeBetweenAttacks = 2;
 
-            currentFireball = Instantiate(fireballPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            currentFireball = Instantiate(fireballPrefab, gameObject.transform.position, gameObject.transform.rotation);
             currentFireball.GetComponent<Rigidbody>().AddForce(currentFireball.transform.forward * (fireballSpeed), ForceMode.Impulse);
 
             //currentFireball.GetComponent<Bullet>().targetTag = "Player";
             currentFireball.GetComponent<Bullet>().rude = true;
             currentFireball.GetComponent<Bullet>().damage = attackDamage;
             currentFireball.GetComponent<Bullet>().LifetimeDestroy(fireballLifespan);
-            currentFireball.GetComponent<Bullet>().myShooter = this.gameObject;
+            currentFireball.GetComponent<Bullet>().myShooter = gameObject;
         }
     }
 }
