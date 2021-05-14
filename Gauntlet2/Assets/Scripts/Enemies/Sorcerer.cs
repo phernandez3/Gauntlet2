@@ -31,11 +31,11 @@ public class Sorcerer : BaseEnemy
         }
 
         //This happens after sorcerer finished attacking
-        if (timeBetweenAttacks > 0)
+        if(timeBetweenAttacks > 0)
         {
             timeBetweenAttacks -= Time.deltaTime;
 
-            if (timeBetweenAttacks <= 0)
+            if(timeBetweenAttacks <= 0)
             {
                 timeBetweenAttacks = 0;
             }

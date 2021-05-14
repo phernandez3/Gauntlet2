@@ -23,10 +23,10 @@ public class BaseEnemy : BaseUnit
     public void FixedUpdate()
     {
         //THIS enemy will only start searching for players IF there are any active
-        if (activePlayers.Count > 0)
+        if(activePlayers.Count > 0)
         {
             //THIS enemy will stop moving once player is in range
-            if (inRange)
+            if(inRange)
             {
                 moveSpeed = 0;
             }
@@ -95,6 +95,9 @@ public class BaseEnemy : BaseUnit
 
         //Basic moving toward whichever player is nearest to this enemy
         transform.position = Vector3.MoveTowards(transform.position, closestPlayer.transform.position, moveSpeed * Time.deltaTime);
+
+        //Enemy will look at player target while moving
+        transform.LookAt(closestPlayer.transform.position);
 
         //Checks for if player being followed is in range of THIS enemy attack range
         if(distanceToClosestPlayer < attackRange)
