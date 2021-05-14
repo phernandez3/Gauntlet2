@@ -17,7 +17,7 @@ public class BasePlayer : BaseUnit
     protected string Bomb;
 
     // Objects
-    public GameObject meleeHitbox;
+    // public GameObject meleeHitbox;
 
     // Basic player stats
     public int score;
@@ -31,6 +31,7 @@ public class BasePlayer : BaseUnit
     public int foodHeal;
 
     // Per player class stats
+    public string myClass;
     public int meleePower;
     public int rangePower;
     public float rangeSpeed;
