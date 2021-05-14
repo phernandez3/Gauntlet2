@@ -23,6 +23,7 @@ public class EnemyGenerator : BaseUnit
     private void Awake()
     {
         healthPoints = 5;
+        spawnLimit = 10;
     }
 
 

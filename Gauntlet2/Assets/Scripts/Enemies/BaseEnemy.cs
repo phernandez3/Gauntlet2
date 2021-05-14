@@ -102,6 +102,11 @@ public class BaseEnemy : BaseUnit
                 inactivePlayers.Add(player);
             }
         }
+
+        if(isDead)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 

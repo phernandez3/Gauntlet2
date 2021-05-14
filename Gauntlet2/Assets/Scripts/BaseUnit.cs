@@ -15,15 +15,15 @@ public class BaseUnit : MonoBehaviour
     public bool isDead = false;
 
 
+    //Where players, enemies, and generators take damage
     public void TakeDamage(int damageAmount)
     {
         healthPoints -= damageAmount;
         Debug.Log("took damage");
-        if (healthPoints <= 0)
+
+        if(healthPoints <= 0)
         {
-            Destroy(this.gameObject);
+            isDead = true;
         }
     }
-
-    //this is where player classes, enemies, and generators will take damage
 }
