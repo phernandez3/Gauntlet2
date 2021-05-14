@@ -81,6 +81,13 @@ public class Bullet : MonoBehaviour
 
             if (other.CompareTag("Food"))
             {
+                if (other.gameObject.GetComponent<Food>() != null)
+                {
+                    if (other.gameObject.GetComponent<Food>().destroyedOnShot)
+                    {
+                        Destroy(other.gameObject);
+                    }
+                }
                 Destroy(this.gameObject);
             }
         }
