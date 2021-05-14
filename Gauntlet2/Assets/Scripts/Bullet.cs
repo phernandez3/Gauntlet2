@@ -26,65 +26,64 @@ public class Bullet : MonoBehaviour
 
     private void TriggerStuff(Collider other)
     {
-        // If friendly fire, then ignore targetTag and work on either unit type.
-        if (rude && other.gameObject != myShooter)
+        if (other.gameObject != myShooter)
         {
-            if (other.CompareTag("Enemy") || other.CompareTag("Player"))
+            // If friendly fire, then ignore targetTag and work on either unit type.
+            if (rude)
             {
-                if (other.gameObject.GetComponent<BasePlayer>() != null)
+                if (other.CompareTag("Enemy") || other.CompareTag("Player"))
                 {
-                    other.gameObject.GetComponent<BasePlayer>().TakeArmoredDamage(damage);
-                }
-                else if (other.gameObject.GetComponent<BaseUnit>() != null)
-                {
-                    other.gameObject.GetComponent<BaseUnit>().TakeDamage(damage);
-                }
-            }
-
-        }
-        else
-
-        // If not friendly fire, then refer to target tag.
-        if (other.CompareTag(targetTag))
-        {
-            switch (targetTag)
-            {
-                case "Enemy":
-                    if (other.gameObject.GetComponent<BaseEnemy>() != null)
-                    {
-                        other.gameObject.GetComponent<BaseEnemy>().TakeDamage(damage);
-                    }
-                    else
-                    {
-                        print("Enemy-tagged object did not have BaseEnemy script or any of its children.");
-                    }
-                    Destroy(this.gameObject);
-                    break;
-                case "Player":
                     if (other.gameObject.GetComponent<BasePlayer>() != null)
                     {
                         other.gameObject.GetComponent<BasePlayer>().TakeArmoredDamage(damage);
                     }
-                    else
+                    else if (other.gameObject.GetComponent<BaseUnit>() != null)
                     {
-                        print("Player-tagged object did not have BasePlayer script or any of its children.");
+                        other.gameObject.GetComponent<BaseUnit>().TakeDamage(damage);
                     }
+                }
+
+            }
+            else
+
+            // If not friendly fire, then refer to target tag.
+            if (other.CompareTag("Enemy"))
+            {
+                if (other.gameObject.GetComponent<BaseEnemy>() != null)
+                {
+                    other.gameObject.GetComponent<BaseEnemy>().TakeDamage(damage);
                     Destroy(this.gameObject);
-                    break;
+                }
+                else
+                {
+                    print("Enemy-tagged object did not have BaseEnemy script or any of its children.");
+                }
+            }
+
+            if (other.CompareTag("Player"))
+            {
+                if (other.gameObject.GetComponent<BasePlayer>() != null)
+                {
+                    other.gameObject.GetComponent<BasePlayer>().TakeArmoredDamage(damage);
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    print("Player-tagged object did not have BasePlayer script or any of its children.");
+                }
+            }
+
+            // Generic stuff that always checks.
+            if (other.CompareTag("Wall"))
+            {
+                Destroy(this.gameObject);
+            }
+
+            if (other.CompareTag("Food"))
+            {
+                Destroy(this.gameObject);
             }
         }
-
-        // Generic stuff that always checks.
-        if (other.CompareTag("Wall"))
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (other.CompareTag("Food"))
-        {
-            Destroy(this.gameObject);
-        }
-
     }
 
 }
