@@ -18,8 +18,9 @@ public class Demon : BaseEnemy
     //Set demon stats here
     private void Start()
     {
+        healthPoints = 10;
         attackDamage = 1;
-        attackRange = 12;
+        attackRange = 20;
     }
 
 

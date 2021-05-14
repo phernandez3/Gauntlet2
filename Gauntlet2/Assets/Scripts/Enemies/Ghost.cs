@@ -21,7 +21,7 @@ public class Ghost : BaseEnemy
     {
         if(inRange)
         {
-            closestPlayer.GetComponent<BaseUnit>().TakeDamage(attackDamage);
+            closestPlayer.GetComponent<BasePlayer>().TakeArmoredDamage(attackDamage);
             base.isDead = true;
         }
     }

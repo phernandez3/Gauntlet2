@@ -31,11 +31,11 @@ public class Sorcerer : BaseEnemy
         }
 
         //This happens after sorcerer finished attacking
-        if(timeBetweenAttacks > 0)
+        if (timeBetweenAttacks > 0)
         {
             timeBetweenAttacks -= Time.deltaTime;
 
-            if(timeBetweenAttacks <= 0)
+            if (timeBetweenAttacks <= 0)
             {
                 timeBetweenAttacks = 0;
             }
@@ -46,7 +46,7 @@ public class Sorcerer : BaseEnemy
     //Adjust sorcerer attack speed here
     private void SorcererAttack()
     {
-        closestPlayer.GetComponent<BaseUnit>().TakeDamage(attackDamage);
+        closestPlayer.GetComponent<BasePlayer>().TakeArmoredDamage(attackDamage);
         timeBetweenAttacks = 1;
     }
 

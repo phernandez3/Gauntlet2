@@ -40,7 +40,7 @@ public class Grunt : BaseEnemy
     //Adjust grunt attack speed here
     private void GruntAttack()
     {
-        closestPlayer.GetComponent<BaseUnit>().TakeDamage(attackDamage);
+        closestPlayer.GetComponent<BasePlayer>().TakeArmoredDamage(attackDamage);
         timeBetweenAttacks = 1;
     }
 }

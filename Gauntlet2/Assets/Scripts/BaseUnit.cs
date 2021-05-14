@@ -19,10 +19,10 @@ public class BaseUnit : MonoBehaviour
     {
         healthPoints -= damageAmount;
         Debug.Log("took damage");
-        //if (healthPoints <= 0)
-        //{
-        //    Destroy(this.gameObject);
-        //}
+        if (healthPoints <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     //this is where player classes, enemies, and generators will take damage

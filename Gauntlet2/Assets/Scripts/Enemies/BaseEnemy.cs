@@ -19,6 +19,8 @@ public class BaseEnemy : BaseUnit
     public float timeBetweenAttacks = 0;     //Set up for enemy types that attack every so often
     public bool inRange = false;             //Checks for if player target is in range of THIS enemy's attack
 
+    public bool isCrowded = false;
+
 
     public void FixedUpdate()
     {
@@ -26,13 +28,13 @@ public class BaseEnemy : BaseUnit
         if(activePlayers.Count > 0)
         {
             //THIS enemy will stop moving once player is in range
-            if(inRange)
+            if(inRange || isCrowded)
             {
                 moveSpeed = 0;
             }
             else
             {
-                moveSpeed = 5;
+                moveSpeed = 3;
             }
 
             MoveToClosestPlayer();
@@ -44,7 +46,7 @@ public class BaseEnemy : BaseUnit
     {
         //Killed players will be removed from activePlayers list
         //Also checks if an inactive player has joined back in
-        foreach(GameObject player in inactivePlayers)
+        foreach (GameObject player in inactivePlayers)
         {
             activePlayers.Remove(player);
 
@@ -107,6 +109,24 @@ public class BaseEnemy : BaseUnit
         else
         {
             inRange = false;
+        }
+    }
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            isCrowded = true;
+        }
+    }
+
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Enemy") && !inRange)
+        {
+            isCrowded = false;
         }
     }
 }
