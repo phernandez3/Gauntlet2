@@ -151,4 +151,13 @@ public class BaseEnemy : BaseUnit
             inRange = false;
         }
     }
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Bullet"))
+        {
+            base.TakeDamage(5);
+        }
+    }
 }
