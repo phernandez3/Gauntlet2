@@ -1,6 +1,6 @@
 ﻿/*
  * Eric Swartz
- * 
+ * Sets death enemy to rapidly attack player target.
  */
 
 using System.Collections;

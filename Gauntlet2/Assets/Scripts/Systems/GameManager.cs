@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
 
     public GameState myGameState;
     public UI_Manager myUI;
-    //private AudioManager myAudio;
+    public Announcer myAnnouncer;
+    public Audio_Manager myAudio;
 
+   
     // Determine what players are in play. If the play is not in play remove references to their UI/system.
     public bool p1_isPlaying;
     public bool p2_isPlaying;

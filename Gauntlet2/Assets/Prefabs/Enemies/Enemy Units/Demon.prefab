@@ -338,7 +338,7 @@ Transform:
   m_GameObject: {fileID: 8637221534894249653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4630703900195120629}
   - {fileID: 3181728479493644166}
@@ -444,5 +444,5 @@ MonoBehaviour:
   timeBetweenAttacks: 0
   inRange: 0
   isCrowded: 0
-  fireballPrefab: {fileID: 1303973324056938485, guid: b970a1f6975b35c498699f3c7148a6b2,
+  fireballPrefab: {fileID: 1173061134196366505, guid: a30d1fec9b15ca14cbb602a3ddc035ff,
     type: 3}
