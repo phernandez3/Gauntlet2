@@ -42,12 +42,11 @@ public class Bullet : MonoBehaviour
                         other.gameObject.GetComponent<BaseUnit>().TakeDamage(damage);
                     }
                 }
-
             }
             else
 
             // If not friendly fire, then refer to target tag.
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy") && targetTag == "Enemy")
             {
                 if (other.gameObject.GetComponent<BaseEnemy>() != null)
                 {
@@ -60,7 +59,7 @@ public class Bullet : MonoBehaviour
                 }
             }
 
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && targetTag == "Player")
             {
                 if (other.gameObject.GetComponent<BasePlayer>() != null)
                 {
