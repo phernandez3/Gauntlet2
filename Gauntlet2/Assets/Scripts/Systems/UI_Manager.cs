@@ -22,6 +22,8 @@ public class UI_Manager : MonoBehaviour
     private Text p3_HP_UI;
     private Text p4_HP_UI;
 
+    private Text selectClass;
+
     private Text wizard_UI;
     private Text warrior_UI;
     private Text valkyrie_UI;
@@ -59,7 +61,6 @@ public class UI_Manager : MonoBehaviour
         p2_HP_UI = GameObject.Find("p2_HP#").GetComponent<Text>();
         p3_HP_UI = GameObject.Find("p3_HP#").GetComponent<Text>();
         p4_HP_UI = GameObject.Find("p4_HP#").GetComponent<Text>();
-
         
     }
     public void TurnOffGameUI()
@@ -79,11 +80,6 @@ public class UI_Manager : MonoBehaviour
     public void TurnOnGameUI()
     {
         announcement_UI.enabled = true;
-    }
-
-    void Update_Announcement()
-    {
-
     }
 
     void Update_Roster()
@@ -155,10 +151,5 @@ public class UI_Manager : MonoBehaviour
         p2_keys_UI.text = GameManager.Instance.myPlayers[1].keys.ToString();
         p3_keys_UI.text = GameManager.Instance.myPlayers[2].keys.ToString();
         p4_keys_UI.text = GameManager.Instance.myPlayers[3].keys.ToString();
-    }
-
-    void ClassSelectUI()
-    {
-
     }
 }
