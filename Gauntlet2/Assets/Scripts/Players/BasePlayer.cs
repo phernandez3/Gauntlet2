@@ -10,11 +10,11 @@ public class BasePlayer : BaseUnit
 
     // Player-controller stuff
     public int controllerSlot;
-    private string MoveX;
-    private string MoveY;
-    private string FireX;
-    private string FireY;
-    private string Bomb;
+    protected string MoveX;
+    protected string MoveY;
+    protected string FireX;
+    protected string FireY;
+    protected string Bomb;
 
     // Objects
     public GameObject meleeHitbox;
@@ -27,7 +27,7 @@ public class BasePlayer : BaseUnit
     // Basic player constants
     public float hungerRate;
     public int hungerDamage;
-    private bool hungerTimerWaiting;
+    protected bool hungerTimerWaiting;
     public int foodHeal;
 
     // Per player class stats
@@ -40,9 +40,9 @@ public class BasePlayer : BaseUnit
     public int magic;
 
     // Tracking stuff
-    private GameObject currentBullet;
-    private float bombCooldown;
-    private float lastBombTime;
+    protected GameObject currentBullet;
+    public float bombCooldown;
+    protected float lastBombTime;
 
     // Move
     // MeleeAttack
@@ -54,12 +54,13 @@ public class BasePlayer : BaseUnit
     // Bomb
     // Lose HP over time
 
-    private void Awake()
+    protected void Awake()
     {
         InitInputs();
+        lastBombTime = Time.time;
     }
 
-    private void Update()
+    protected void Update()
     {
         PlayerActions();
         Hunger();
@@ -87,6 +88,10 @@ public class BasePlayer : BaseUnit
             Move.z += Input.GetAxis(MoveY) * moveSpeed * Time.deltaTime * -1;
             transform.localPosition = Move; // Currently un-normalized?
         }
+        else // If not inputting movement, then cancel all velocity.
+        {
+            this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3();
+        }
         if (Input.GetAxis(FireX) != 0 || Input.GetAxis(FireY) != 0)
         {
             // Turn to stick direction.
@@ -97,22 +102,39 @@ public class BasePlayer : BaseUnit
             Fire();
             
         }
+
         if (Input.GetAxis(Bomb) != 0)
         {
-            if (bombs > 0)
+            if (bombCooldown < Time.time - lastBombTime)
             {
-                --bombs;
-                print("Player" + controllerSlot + ": Bomb! " + bombs + " remaining.");
-            }
-            else
-            {
-                print("Player" + controllerSlot + ": No bombs!");
+                if (bombs > 0)
+                {
+
+                    --bombs;
+
+                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+                    foreach (GameObject enemy in enemies) // Do magic damage to every enemy in scene.
+                    {
+                        if (enemy.GetComponent<BaseEnemy>() != null)
+                        {
+                            enemy.GetComponent<BaseEnemy>().TakeDamage(magic);
+                        }
+                    }
+
+                    print("Player" + controllerSlot + ": Bomb! " + bombs + " remaining.");
+                }
+                else
+                {
+                    print("Player" + controllerSlot + ": No bombs!");
+                }
             }
 
+            lastBombTime = Time.time;
         }
     }
 
-    private void Fire()
+    protected void Fire()
     {
         if (currentBullet == null) // Using the original game's "one bullet out at once" rule.
         {
@@ -127,10 +149,9 @@ public class BasePlayer : BaseUnit
             currentBullet.GetComponent<Bullet>().LifetimeDestroy(rangeLifetime);
             currentBullet.GetComponent<Bullet>().myShooter = this.gameObject;
         }
-        
     }
 
-    private void Hunger()
+    protected void Hunger()
     {
         if (!hungerTimerWaiting)
         {
@@ -138,7 +159,7 @@ public class BasePlayer : BaseUnit
         }
     }
 
-    private IEnumerator HungerTimer()
+    protected IEnumerator HungerTimer()
     {
         hungerTimerWaiting = true;
         yield return new WaitForSeconds(hungerRate);
@@ -159,38 +180,32 @@ public class BasePlayer : BaseUnit
         TakeDamage(damage); // Take this final amount of damage and do regular damage stuff with it.
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Food"))
         {
             Destroy(other.gameObject);
             healthPoints += foodHeal;
         }
-        else
-
         if (other.CompareTag("Potion"))
         {
             Destroy(other.gameObject);
             bombs++;
         }
-        else
-
         if (other.CompareTag("Key"))
         {
             Destroy(other.gameObject);
             keys++;
         }
-        else
-
         if (other.CompareTag("Door") && keys > 0)
         {
             Destroy(other.gameObject);
             keys--;
         }
-
         if (other.CompareTag("Exit"))
         {
-            
+            print("Please set up level EXIT behavior!");
+            // Insert code to exit here.
         }
     }
 }
