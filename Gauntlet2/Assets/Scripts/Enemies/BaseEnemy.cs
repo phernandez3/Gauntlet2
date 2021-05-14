@@ -20,6 +20,26 @@ public class BaseEnemy : BaseUnit
     public bool inRange = false;             //Checks for if player target is in range of THIS enemy's attack
 
 
+    public void FixedUpdate()
+    {
+        //THIS enemy will only start searching for players IF there are any active
+        if (activePlayers.Count > 0)
+        {
+            //THIS enemy will stop moving once player is in range
+            if (inRange)
+            {
+                moveSpeed = 0;
+            }
+            else
+            {
+                moveSpeed = 5;
+            }
+
+            MoveToClosestPlayer();
+        }
+    }
+
+
     public void Update()
     {
         //Killed players will be removed from activePlayers list
@@ -44,22 +64,6 @@ public class BaseEnemy : BaseUnit
             {
                 inactivePlayers.Add(player);
             }
-        }
-
-        //THIS enemy will only start searching for players IF there are any active
-        if(activePlayers.Count > 0)
-        {
-            //THIS enemy will stop moving once player is in range
-            if (inRange)
-            {
-                moveSpeed = 0;
-            }
-            else
-            {
-                moveSpeed = 5;
-            }
-
-            MoveToClosestPlayer();
         }
     }
 
@@ -88,8 +92,6 @@ public class BaseEnemy : BaseUnit
                 closestPlayer = playerToFollow;
             }
         }
-
-        Debug.DrawLine(transform.position, closestPlayer.transform.position);
 
         //Basic moving toward whichever player is nearest to this enemy
         transform.position = Vector3.MoveTowards(transform.position, closestPlayer.transform.position, moveSpeed * Time.deltaTime);
