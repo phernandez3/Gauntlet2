@@ -82,15 +82,15 @@ public class BasePlayer : BaseUnit
     {
         if (Input.GetAxis(MoveX) != 0 || Input.GetAxis(MoveY) != 0)
         {
-            Vector2 Move = transform.localPosition;
+            Vector3 Move = transform.localPosition;
             Move.x += Input.GetAxis(MoveX) * moveSpeed * Time.deltaTime;
-            Move.y += Input.GetAxis(MoveY) * moveSpeed * Time.deltaTime * -1;
+            Move.z += Input.GetAxis(MoveY) * moveSpeed * Time.deltaTime * -1;
             transform.localPosition = Move; // Currently un-normalized?
         }
         if (Input.GetAxis(FireX) != 0 || Input.GetAxis(FireY) != 0)
         {
             // Turn to stick direction.
-            Vector3 look = new Vector3(Input.GetAxis(FireX) * -1, Input.GetAxis(FireY), 0f);
+            Vector3 look = new Vector3(Input.GetAxis(FireX) * -1, 0f, Input.GetAxis(FireY));
             transform.rotation = Quaternion.LookRotation(look * -1, Vector3.forward);
 
             // Fire
@@ -186,6 +186,11 @@ public class BasePlayer : BaseUnit
         {
             Destroy(other.gameObject);
             keys--;
+        }
+
+        if (other.CompareTag("Exit"))
+        {
+            
         }
     }
 }
