@@ -526,6 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89049870}
   - component: {fileID: 89049869}
+  - component: {fileID: 89049872}
   - component: {fileID: 89049868}
   - component: {fileID: 89049871}
   m_Layer: 0
@@ -561,6 +562,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myGameState: 0
   myUI: {fileID: 89049868}
+  myAnnouncer: {fileID: 89049872}
+  myAudio: {fileID: 89049871}
   p1_isPlaying: 0
   p2_isPlaying: 0
   p3_isPlaying: 0
@@ -600,18 +603,115 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Player1
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Player_1
+    clip: {fileID: 8300000, guid: 0c460d931a5091f4bbbc5f3f2ceed86d, type: 3}
+    volume: 0.5
+    pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Player2
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Player_2
+    clip: {fileID: 8300000, guid: 4980a5502b94d48478306a01c1404706, type: 3}
+    volume: 0.5
+    pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Player_3
+    clip: {fileID: 8300000, guid: f771d735b347b614ca5bb93023dff4c3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player_4
+    clip: {fileID: 8300000, guid: 8611c690ef775d2499c501f8fa8b0165, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player_Wizard
+    clip: {fileID: 8300000, guid: 23a44b13350889442abda69a388c511d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player_Warrior
+    clip: {fileID: 8300000, guid: e157bbfc52c79a14e8f68af1636b31ae, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player_Elf
+    clip: {fileID: 8300000, guid: f6abafb8ab4748d408fc873cbc3a4fc3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player_Valkyrie
+    clip: {fileID: 8300000, guid: 951281762d14e5147b314807cb30f43f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LowHealth_1
+    clip: {fileID: 8300000, guid: e6c7e622fa37ce2499cd0d102ca7efdb, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LowHealth_2
+    clip: {fileID: 8300000, guid: e4534ffdaf0b79444bfa0ea089a90c06, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LowHealth_3
+    clip: {fileID: 8300000, guid: ca14147e043afe943ab7f7fae6fa6f6d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LowHealth_4
+    clip: {fileID: 8300000, guid: bb40624becf551e4d8dda05bc88ad5f5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: High_Score
+    clip: {fileID: 8300000, guid: 03a0dfc4e212bc14a85000804e8244d7, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot_Food
+    clip: {fileID: 8300000, guid: 3a7b6d2da325ea748a2e31134e993917, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot_Player
+    clip: {fileID: 8300000, guid: bb40624becf551e4d8dda05bc88ad5f5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!114 &89049872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89049867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf50d421fd24694295ef32988babf78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  announcementText: 
+  announcing: 0
+  announcementPriority: 0
+  announcementLength: 0
+  announcementDelayTimer: 0
+  announcementPlayer: 0
+  announcementClass: 
 --- !u!1 &91815229
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +805,7 @@ RectTransform:
   - {fileID: 1513633448}
   - {fileID: 203660235}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1227,6 +1327,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214746085}
   m_CullTransparentMesh: 0
+--- !u!1001 &236236251
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7773916976430598874, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.77557003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.219903
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.195517
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598879, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598875, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: myClass
+      value: Valkyrie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773916976430598875, guid: a39bd237831e91f429f71fb5cdcc97e3,
+        type: 3}
+      propertyPath: controllerSlot
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a39bd237831e91f429f71fb5cdcc97e3, type: 3}
 --- !u!1 &252276341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,7 +1968,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &731549101
 GameObject:
@@ -2404,7 +2583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1052987490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3256,7 +3435,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663421457
 GameObject:
@@ -3888,7 +4067,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965072918
 GameObject:

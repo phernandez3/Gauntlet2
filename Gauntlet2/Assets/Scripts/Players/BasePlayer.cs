@@ -63,6 +63,7 @@ public class BasePlayer : BaseUnit
 
     protected void Update()
     {
+
         PlayerActions();
         Hunger();
     }
@@ -79,6 +80,7 @@ public class BasePlayer : BaseUnit
         Bomb = "Bomb" + controllerSlot;
     }
 
+    
 
     public void PlayerActions()
     {
@@ -179,6 +181,13 @@ public class BasePlayer : BaseUnit
         int damage = armoredDamage - (armor / 2);
         // print(damage);
         TakeDamage(damage); // Take this final amount of damage and do regular damage stuff with it.
+
+        if (healthPoints <= 100)
+        {
+            Announcer testAnnouncer = GameManager.Instance.myAnnouncer;
+
+            testAnnouncer.StartPlayerAnnouncement(Announcer.AnnouncementType.lowHealth, this);
+        }
     }
 
     protected void OnTriggerEnter(Collider other)

@@ -17,10 +17,10 @@ public class UI_Manager : MonoBehaviour
     private Text p3_score_UI;
     private Text p4_score_UI;
 
-    private Image p1_HP_UI;
-    private Image p2_HP_UI;
-    private Image p3_HP_UI;
-    private Image p4_HP_UI;
+    private Text p1_HP_UI;
+    private Text p2_HP_UI;
+    private Text p3_HP_UI;
+    private Text p4_HP_UI;
 
     private Image p1_items_UI;
     private Image p2_items_UI;
@@ -38,14 +38,14 @@ public class UI_Manager : MonoBehaviour
         p2_score_UI = GameObject.Find("p2_score#").GetComponent<Text>();
         p3_score_UI = GameObject.Find("p3_score#").GetComponent<Text>();
         p4_score_UI = GameObject.Find("p4_score#").GetComponent<Text>();
+
+        p1_HP_UI = GameObject.Find("p1_HP#").GetComponent<Text>();
+        p2_HP_UI = GameObject.Find("p2_HP#").GetComponent<Text>();
+        p3_HP_UI = GameObject.Find("p3_HP#").GetComponent<Text>();
+        p4_HP_UI = GameObject.Find("p4_HP#").GetComponent<Text>();
     }
     public void TurnOffUI()
     {
-
-        p1_isPlaying_UI.enabled = false;
-        p2_isPlaying_UI.enabled = false;
-        p3_isPlaying_UI.enabled = false;
-        p4_isPlaying_UI.enabled = false;
 
         p1_score_UI.enabled = false;
         p2_score_UI.enabled = false;

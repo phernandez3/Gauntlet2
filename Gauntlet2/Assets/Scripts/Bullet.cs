@@ -76,6 +76,11 @@ public class Bullet : MonoBehaviour
                     if (other.gameObject.GetComponent<Food>().destroyedOnShot)
                     {
                         Destroy(other.gameObject);
+
+                        Announcer testAnnouncer = GameManager.Instance.myAnnouncer;
+
+                        testAnnouncer.StartPlayerAnnouncement(Announcer.AnnouncementType.lowHealth, myShooter.GetComponent<BasePlayer>());
+
                     }
                 }
                 Destroy(this.gameObject);
