@@ -18,22 +18,35 @@ public class BaseEnemy : BaseUnit
     public float attackRange;                //ONLY sets up attack range variable
     public float timeBetweenAttacks = 0;     //Set up for enemy types that attack every so often
     public bool inRange = false;             //Checks for if player target is in range of THIS enemy's attack
-
-    public bool isCrowded = false;
+    public bool isCrowded = false;           //Fixes enemies from pushing each other while following a player
 
 
     public void FixedUpdate()
     {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2f, 1 << 8);
+        
+        if(hit.collider != null)
+        {
+            isCrowded = true;
+        }
+        else
+        {
+            isCrowded = false;
+        }
+
         //THIS enemy will only start searching for players IF there are any active
         if(activePlayers.Count > 0)
         {
             //THIS enemy will stop moving once player is in range
+            //Or if another enemy is in front of this one
             if(inRange || isCrowded)
             {
                 moveSpeed = 0;
             }
             else
             {
+                //Adjust all enemy move speed here
                 moveSpeed = 3;
             }
 
@@ -109,24 +122,6 @@ public class BaseEnemy : BaseUnit
         else
         {
             inRange = false;
-        }
-    }
-
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Enemy"))
-        {
-            isCrowded = true;
-        }
-    }
-
-
-    public void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Enemy") && !inRange)
-        {
-            isCrowded = false;
         }
     }
 }

@@ -9,10 +9,11 @@ using UnityEngine;
 
 public class Demon : BaseEnemy
 {
-    [SerializeField] private GameObject currentFireball;
-    [SerializeField] private GameObject fireballPrefab;
-    private float speed = 5; //probably rename
-    private float lifespan = 1; //probably rename
+    [SerializeField] private GameObject fireballPrefab;     //Reference to fireball prefab goes here
+
+    private GameObject currentFireball;     //Safety net for there to be only one fireball per THIS demon out at a time
+    private float fireballSpeed = 5;        //How fast fireball will travel
+    private float fireballLifespan = 1;     //How long fireball will last without hitting anything
 
 
     //Set demon stats here
@@ -29,7 +30,6 @@ public class Demon : BaseEnemy
         if(inRange && timeBetweenAttacks == 0)
         {
             DemonAttack();
-            Debug.Log("shot bullet");
         }
 
         //This happens after demon finished attacking
@@ -45,26 +45,23 @@ public class Demon : BaseEnemy
     }
 
 
+    //Carrying over Paul's Fire() function from BasePlayer script
+    //Demon will shoot a fireball at a player
+    //Adjust demon attack speed here
     private void DemonAttack()
     {
-        if(currentFireball == null) // Using the original game's "one bullet out at once" rule.
+        if(currentFireball == null)
         {
-            timeBetweenAttacks = 1;
+            timeBetweenAttacks = 2;
 
-            // Since the player model itself rotates, 
-            // I'm just choosing to spawn an object and give it forward velocity based on the player's rotation.
             currentFireball = Instantiate(fireballPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
-            currentFireball.GetComponent<Rigidbody>().AddForce(currentFireball.transform.forward * (speed), ForceMode.Impulse);
+            currentFireball.GetComponent<Rigidbody>().AddForce(currentFireball.transform.forward * (fireballSpeed), ForceMode.Impulse);
 
-            Debug.Log("instantiated bullet");
-
-            // Give the bullet info.
-            currentFireball.GetComponent<Bullet>().targetTag = "Player";
-            //currentFireball.GetComponent<Bullet>().rude = true;
+            //currentFireball.GetComponent<Bullet>().targetTag = "Player";
+            currentFireball.GetComponent<Bullet>().rude = true;
             currentFireball.GetComponent<Bullet>().damage = attackDamage;
-            currentFireball.GetComponent<Bullet>().LifetimeDestroy(lifespan);
+            currentFireball.GetComponent<Bullet>().LifetimeDestroy(fireballLifespan);
             currentFireball.GetComponent<Bullet>().myShooter = this.gameObject;
-            Debug.Log("qty");
         }
     }
 }
