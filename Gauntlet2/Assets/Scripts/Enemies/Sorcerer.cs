@@ -18,6 +18,7 @@ public class Sorcerer : BaseEnemy
     {
         attackDamage = 1;
         attackRange = 3;
+        healthPoints = 20;
 
         StartCoroutine(PhaseInOut());
     }

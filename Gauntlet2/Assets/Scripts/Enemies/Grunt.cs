@@ -14,6 +14,7 @@ public class Grunt : BaseEnemy
     {
         attackDamage = 1;
         attackRange = 3;
+        healthPoints = 10;
     }
 
 

@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 5747893021166241774}
   - component: {fileID: 3340026497451704200}
   m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Untagged
+  m_Name: BulletBase
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTag: Enemy
   damage: 1
+  rude: 0
+  myShooter: {fileID: 0}
 --- !u!54 &3340026497451704200
 Rigidbody:
   m_ObjectHideFlags: 0
