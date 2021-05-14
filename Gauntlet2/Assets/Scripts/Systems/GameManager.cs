@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { menu, createLevel, gameplay, pause, gameOver}
+public enum GameState {menu, createLevel, gameplay, pause, gameOver}
 
 public class GameManager : MonoBehaviour
 {
@@ -20,22 +20,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public GameState myGameState;
+
+    public List<BasePlayer> myPlayers = new List<BasePlayer>();
+
     public UI_Manager myUI;
     public Announcer myAnnouncer;
     public Audio_Manager myAudio;
 
    
     // Determine what players are in play. If the play is not in play remove references to their UI/system.
-    public bool p1_isPlaying;
-    public bool p2_isPlaying;
-    public bool p3_isPlaying;
-    public bool p4_isPlaying;
 
-    public int p1_score;
-    public int p2_score;
-    public int p3_score;
-    public int p4_score;
     public int total_score;
     public int high_score;
 
@@ -63,7 +59,7 @@ public class GameManager : MonoBehaviour
         switch (myGameState)
         {
             case GameState.menu:
-                myUI.TurnOffUI();
+                myUI.TurnOffGameUI();
 
                 break;
             case GameState.createLevel:

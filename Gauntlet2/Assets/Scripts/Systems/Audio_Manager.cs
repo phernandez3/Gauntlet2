@@ -29,7 +29,7 @@ public class Audio_Manager : MonoBehaviour
             s.source.clip = s.clip;
 
             s.source.volume = s.volume;
-            s.source.volume = s.pitch;
+            s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
     }

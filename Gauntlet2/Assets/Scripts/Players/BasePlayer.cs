@@ -8,6 +8,8 @@ public class BasePlayer : BaseUnit
     // public int health;
     // public float moveSpeed;
 
+    public bool isPlaying;
+
     // Player-controller stuff
     public int controllerSlot;
     protected string MoveX;
@@ -15,6 +17,7 @@ public class BasePlayer : BaseUnit
     protected string FireX;
     protected string FireY;
     protected string Bomb;
+    protected string Start;
 
     // Objects
     // public GameObject meleeHitbox;
@@ -78,12 +81,24 @@ public class BasePlayer : BaseUnit
         FireX = "FireX" + controllerSlot;
         FireY = "FireY" + controllerSlot;
         Bomb = "Bomb" + controllerSlot;
+        Start = "Start" + controllerSlot;
     }
 
     
 
     public void PlayerActions()
     {
+        if (GameManager.Instance.myGameState == GameState.menu)
+        {
+
+            
+        }
+
+        //if (GameManager.Instance.myGameState == GameState.gameplay)
+        //{
+
+        //}
+
         if (Input.GetAxis(MoveX) != 0 || Input.GetAxis(MoveY) != 0)
         {
             Vector3 Move = transform.localPosition;
@@ -181,6 +196,7 @@ public class BasePlayer : BaseUnit
         int damage = armoredDamage - (armor / 2);
         // print(damage);
         TakeDamage(damage); // Take this final amount of damage and do regular damage stuff with it.
+
 
         if (healthPoints <= 100)
         {
